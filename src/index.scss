@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*,
+::after,
+::before {
+  @apply box-border
+}
+
+body {
+  @apply bg-neutral-100
+}

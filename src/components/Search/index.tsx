@@ -34,21 +34,21 @@ function Search() {
   }, [watch]);
 
   return (
-    <div className={styles.formWrapper}>
+    <aside className={styles.formWrapper}>
       <form className={styles.formSearch} onSubmit={handleSubmit(searchCocktail)}>
         <ErrorsTextHandler message={errors.search?.message}>
           <input
             onFocus={searchToggleBlur}
-            className={`${styles.inputSearch} dark:text-white dark:bg-gray-800 dark:focus:border-white`}
+            className={`${styles.inputSearch} dark:text-gray-300 dark:bg-gray-800 dark:border-none`}
             type="text"
             {...register("search", { required: "This field is empty", onBlur: searchToggleBlur })}
           ></input>
         </ErrorsTextHandler>
-        <button className={`${styles.buttonSearch} dark:text-gray-800 dark:bg-white`}>Search</button>
+        <button className={`${styles.buttonSearch} dark:text-gray-300 dark:bg-gray-800 dark:hover:text-white`}>Search</button>
 
         {<SearchResultDropdown open={Boolean(searchValue && blur)} value={searchValue}></SearchResultDropdown>}
       </form>
-    </div>
+    </aside>
   );
 }
 

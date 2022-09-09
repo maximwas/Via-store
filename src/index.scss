@@ -5,9 +5,29 @@
 *,
 ::after,
 ::before {
-  @apply box-border
+  @apply box-border;
+}
+
+h2 {
+  @apply text-4xl text-gray-900 pl-4 mb-6 dark:text-gray-300;
+}
+
+h4 {
+  @apply text-lg text-gray-900 dark:text-gray-300;
+}
+
+html {
+  @apply flex flex-col min-h-full w-full;
 }
 
 body {
-  @apply bg-neutral-100
+  @apply flex basis-auto flex-shrink flex-grow flex-col min-h-full w-full bg-neutral-100 dark:bg-gradient-to-r from-gray-800 to-gray-900;
+}
+
+#root {
+  @apply flex basis-auto flex-shrink flex-grow flex-col h-full w-full;
+}
+
+main {
+  @apply flex basis-auto flex-shrink flex-grow flex-col px-4 py-5 container mx-auto;
 }

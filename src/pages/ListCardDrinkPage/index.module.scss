@@ -1,0 +1,30 @@
+.cardDrinkWrapper {
+  @apply flex gap-y-6 flex-wrap;
+}
+
+.cardDrink {
+  @apply mx-3 p-3 relative;
+
+  flex-basis: calc(20% - 24px);
+}
+
+.heart {
+  @apply absolute z-50 h-8 w-8 bg-white rounded-md p-1 right-5 top-5
+}
+
+.heartIcons {
+  @apply text-amber-400 transition-colors hover:text-gray-900 cursor-pointer
+}
+
+.cardImage {
+  @apply w-full transition-all grayscale-[60%] hover:grayscale-0 cursor-pointer rounded-lg;
+
+  animation-name: rotate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  animation-duration: 5s;
+}
+
+.cardInfo {
+  @apply px-3 py-2
+}

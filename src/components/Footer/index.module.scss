@@ -1,0 +1,19 @@
+.footer {
+  @apply bg-white py-2;
+}
+
+.footerWrapper {
+  @apply container mx-auto flex items-center justify-between;
+}
+
+.navbar {
+  @apply flex flex-wrap items-center text-sm text-gray-500 mb-0 px-4 py-3 rounded-lg;
+}
+
+.navbarItem {
+  @apply mr-6 last:mr-0;
+}
+
+.navbarLink {
+  @apply hover:underline;
+}

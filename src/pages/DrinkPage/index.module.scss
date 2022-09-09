@@ -1,0 +1,50 @@
+.drink {
+  @apply h-full;
+}
+
+.drinkWrapper {
+  @apply flex justify-between;
+}
+
+.image {
+  @apply basis-1/4 overflow-hidden rounded-full;
+}
+
+.imagesDrink {
+  @apply w-full transition-all grayscale-[60%] hover:grayscale-0 cursor-pointer;
+
+  animation-name: rotate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  animation-duration: 5s;
+}
+
+.drinkInfo {
+  @apply flex basis-[70%] flex-col flex-shrink px-5 w-full;
+}
+
+.cardDescription {
+  @apply h-auto p-4 w-full border-gray-300;
+}
+
+.cardTextDescription {
+  @apply text-lg text-gray-900;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(0%, 0);
+  }
+  25% {
+    transform: translate(-0.2%, 0);
+  }
+  50% {
+    transform: translate(0%, -0.2%);
+  }
+  75% {
+    transform: translate(0.2%, 0%);
+  }
+  100% {
+    transform: translate(0%, 0%);
+  }
+}

@@ -1,21 +1,9 @@
 .header {
-  @apply bg-white border-gray-200 p-2;
+  @apply bg-white border-gray-200 p-2 fixed w-full z-50;
 }
 
 .headerWrapper {
   @apply container flex flex-wrap justify-between items-center mx-auto;
-}
-
-.logoLink {
-  @apply flex items-center;
-}
-
-.logoImg {
-  @apply mr-3 h-9;
-}
-
-.logoText {
-  @apply self-center text-xl font-semibold whitespace-nowrap;
 }
 
 .navbar {

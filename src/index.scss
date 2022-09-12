@@ -9,7 +9,7 @@
 }
 
 h2 {
-  @apply text-4xl text-gray-900 pl-4 mb-6 dark:text-gray-300;
+  @apply text-4xl text-gray-900 pl-4 dark:text-gray-300;
 }
 
 h4 {
@@ -29,5 +29,5 @@ body {
 }
 
 main {
-  @apply flex basis-auto flex-shrink flex-grow flex-col px-4 py-5 container mx-auto;
+  @apply flex basis-auto flex-shrink flex-grow flex-col py-20 container mx-auto;
 }

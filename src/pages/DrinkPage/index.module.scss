@@ -20,11 +20,15 @@
 }
 
 .drinkInfo {
-  @apply flex basis-[70%] flex-col flex-shrink px-5 w-full;
+  @apply flex basis-[70%] flex-col flex-shrink px-5 w-full gap-y-6;
 }
 
 .cardDescription {
   @apply h-auto p-4 w-full border-gray-300;
+}
+
+.cardIngredient {
+  @apply p-4 w-[50%]
 }
 
 .cardTextDescription {
@@ -36,13 +40,13 @@
     transform: translate(0%, 0);
   }
   25% {
-    transform: translate(-0.2%, 0);
+    transform: translate(-0.5%, 0);
   }
   50% {
-    transform: translate(0%, -0.2%);
+    transform: translate(0%, -0.5%);
   }
   75% {
-    transform: translate(0.2%, 0%);
+    transform: translate(0.5%, 0%);
   }
   100% {
     transform: translate(0%, 0%);

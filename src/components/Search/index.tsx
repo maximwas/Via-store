@@ -1,9 +1,13 @@
 import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BsSearch } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import { Drink } from "../../interfaces/drink";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getSearch, searchByName } from "../../store/reducers/initReducer";
 import ErrorsTextHandler from "../ErrorsTextHandler";
 import styles from "./index.module.scss";
+import ClickAwayListener from "react-click-away-listener";
 
 interface Search {
   search: string;
@@ -11,7 +15,6 @@ interface Search {
 
 function Search() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [blur, setBlur] = useState<boolean>(false);
 
   const {
     register,
@@ -24,10 +27,6 @@ function Search() {
     console.log(data);
   };
 
-  const searchToggleBlur = () => {
-    setBlur((prev) => !prev);
-  };
-
   useEffect(() => {
     const subscription = watch((value) => setSearchValue(value.search as string));
     return () => subscription.unsubscribe();
@@ -38,15 +37,14 @@ function Search() {
       <form className={styles.formSearch} onSubmit={handleSubmit(searchCocktail)}>
         <ErrorsTextHandler message={errors.search?.message}>
           <input
-            onFocus={searchToggleBlur}
             className={`${styles.inputSearch} dark:text-gray-300 dark:bg-gray-800 dark:border-none`}
             type="text"
-            {...register("search", { required: "This field is empty", onBlur: searchToggleBlur })}
+            {...register("search", { required: "This field is empty" })}
           ></input>
         </ErrorsTextHandler>
         <button className={`${styles.buttonSearch} dark:text-gray-300 dark:bg-gray-800 dark:hover:text-white`}>Search</button>
 
-        {<SearchResultDropdown open={Boolean(searchValue && blur)} value={searchValue}></SearchResultDropdown>}
+        {<SearchResultDropdown open={Boolean(searchValue)} value={searchValue}></SearchResultDropdown>}
       </form>
     </aside>
   );
@@ -58,31 +56,36 @@ interface SearchResultDropdownProps {
 }
 
 const SearchResultDropdown: FC<SearchResultDropdownProps> = ({ value = "", open = false }) => {
-  const [searchResult, setSearchResult] = useState<Drink[]>([]);
+  const [close, setClose] = useState<boolean>(false);
+  const searchResult = useAppSelector(getSearch);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    (async () => {
-      if (value) {
-        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`);
-        const data = await response.json();
-        setSearchResult(data.drinks);
-      }
-    })();
+    value && dispatch(searchByName(value));
+    setClose(false);
   }, [value]);
 
-  if (!open) return null;
+  const closeDropdown = () => {
+    setClose(true);
+  };
+
+  if (!open || close) return null;
 
   return (
-    <div className={styles.searchResultDropdown}>
-      <ul className={styles.listSearchResultDropdown}>
-        {searchResult?.map(({ strDrink, idDrink }: Drink) => (
-          <li key={idDrink} className={styles.listItemSearchResultDropdown}>
-            <BsSearch className={styles.listIconItemSearchResultDropdown}></BsSearch>
-            {strDrink}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ClickAwayListener onClickAway={closeDropdown}>
+      <div className={styles.searchResultDropdown}>
+        <ul className={styles.listSearchResultDropdown}>
+          {searchResult?.map((search: Drink) => (
+            <li key={search.drinkInfo.idDrink}>
+              <Link onClick={closeDropdown} to={`/drink/${search.drinkInfo.idDrink}`} className={styles.listItemSearchResultDropdown}>
+                <BsSearch className={styles.listIconItemSearchResultDropdown}></BsSearch>
+                {search.drinkInfo.strDrink}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </ClickAwayListener>
   );
 };
 

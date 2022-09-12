@@ -1,15 +1,16 @@
 import React from "react";
 import styles from "./index.module.scss";
+import stylesGlobal from "../global.module.scss";
 
 const Footer = () => {
   return (
     <footer className={`${styles.footer} dark:bg-gradient-to-r from-gray-800 to-gray-900 dark:border-t dark:border-gray-700`}>
       <section className={styles.footerWrapper}>
-        <a href="https://flowbite.com/" className="flex items-center mb-4 sm:mb-0">
-          <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-8" alt="Flowbite Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+        <a href="https://flowbite.com/" className={stylesGlobal.logoLink}>
+          <img src="https://flowbite.com/docs/images/logo.svg" className={stylesGlobal.logoImg} alt="Flowbite Logo" />
+          <span className={`${stylesGlobal.logoText} dark:text-gray-300`}>Flowbite</span>
         </a>
-        <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+        <span className="block text-sm text-gray-900 sm:text-center dark:text-gray-300">
           © 2022{" "}
           <a href="https://flowbite.com/" className="hover:underline">
             Flowbite™

@@ -1,5 +1,5 @@
 .footer {
-  @apply bg-white py-2;
+  @apply bg-white py-2 fixed bottom-0 w-full z-50;
 }
 
 .footerWrapper {

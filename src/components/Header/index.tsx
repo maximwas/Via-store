@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import Search from "../Search";
 import styles from "./index.module.scss";
+import stylesGlobal from "../global.module.scss";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isDarkMode, setDarkMode] = useState<boolean>(false);
@@ -16,16 +18,16 @@ const Header = () => {
   return (
     <header className={`${styles.header} dark:bg-gradient-to-r from-gray-800 to-gray-900 dark:border-b dark:border-gray-700`}>
       <div className={styles.headerWrapper}>
-        <a href="https://flowbite.com/" className={styles.logoLink}>
-          <img src="https://flowbite.com/docs/images/logo.svg" className={styles.logoImg} alt="Flowbite Logo" />
-          <span className={`${styles.logoText} dark:text-gray-300`}>Flowbite</span>
+        <a href="https://flowbite.com/" className={stylesGlobal.logoLink}>
+          <img src="https://flowbite.com/docs/images/logo.svg" className={stylesGlobal.logoImg} alt="Flowbite Logo" />
+          <span className={`${stylesGlobal.logoText} dark:text-gray-300`}>Flowbite</span>
         </a>
         <nav className={styles.navbar}>
           <ul className={`${styles.navbarList} dark:bg-gray-800`}>
             <li>
-              <a href="#" className={`${styles.navbarLink} dark:text-gray-400 dark:hover:text-gray-300`}>
+              <Link to="/" className={`${styles.navbarLink} dark:text-gray-400 dark:hover:text-gray-300`}>
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#" className={`${styles.navbarLink} dark:text-gray-400 dark:hover:text-gray-300`}>

@@ -5,6 +5,18 @@ type KeysDrink = keyof DrinkResponse;
 type KeysInstructions = keyof Instructions;
 type KeysDrinkInfo = keyof DrinkInfo;
 
+declare global {
+  interface Array<T> {
+    asyncForEach<T>(callback: (element: T, index: number, arr: T[]) => Promise<void>): void;
+  }
+}
+
+Array.prototype.asyncForEach = async function <T>(callback: (element: T, index: number, arr: T[]) => Promise<void>) {
+  for(let i = 0; i < this.length; i++) {
+    await callback(this[i], i, this);
+  }
+} 
+
 class Api {
   private client: AxiosInstance;
   private url: string;
@@ -18,12 +30,12 @@ class Api {
   }
 
   public async getAll() {
-    let result: any = []
+    let result: any = [];
 
-    for(let i = 0; i < 25; i++) {
+    [...Array(25)].asyncForEach(async () => {
       const response = await this.client.get(`/random.php`);
       result = [...result, ...response.data.drinks]
-    }
+    })
 
     return this.parseResponse(result);
   }
@@ -53,7 +65,7 @@ class Api {
   private parseIngredient(element: DrinkResponse): Ingredients[] {
     const arr: Ingredients[] = [];
 
-    Array.from(Array(15).keys()).forEach((index: number) => {
+    [...Array(15)].forEach((_: undefined, index: number) => {
       const strIngredient = element[`strIngredient${index + 1}` as KeysDrink];
       const strMeasure = element[`strMeasure${index + 1}` as KeysDrink];
 

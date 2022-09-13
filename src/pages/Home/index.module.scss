@@ -1,0 +1,4 @@
+.header {
+  @apply px-6 border-2 border-gray-800 h-20;
+  box-shadow: 0 0 5px 0px theme('colors.gray.800'), inset 0 0 5px 0px theme('colors.gray.800');
+}
